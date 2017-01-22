@@ -6,14 +6,16 @@
  * Date: 21/01/2017
  * Time: 18:52
  */
-include_once("Model/Managers/Query.php");
-include_once("Model/Classes/Image.php");
+include_once $_SERVER["DOCUMENT_ROOT"] . "/Sportus/config.php";
+
+include_once(path . "/Model/Managers/Query.php");
+include_once(path . "/Model/Classes/Image.php");
 
 class ImageManager
 {
     public static function createTable()
     {
-        $query = "CREATE TABLE `sportus`.`Image` ( `id` INT NOT NULL AUTO_INCREMENT , `url` VARCHAR(150) NOT NULL , `extension` VARCHAR(15) NOT NULL , `taille` DOUBLE NOT NULL , `dateAjout` DATETIME NOT NULL , `nom` VARCHAR(100) NOT NULL , `description` TEXT NOT NULL , PRIMARY KEY (`id`)) ENGINE = MyISAM;";
+        $query = "CREATE TABLE `sportus`.`Image` ( `id` INT NOT NULL AUTO_INCREMENT , `url` VARCHAR(150) NOT NULL , `extension` VARCHAR(15) NOT NULL , `taille` DOUBLE NOT NULL , `dateAjout` DATETIME NOT NULL , `nom` VARCHAR(100) NOT NULL , `description` TEXT NOT NULL , PRIMARY KEY (`id`)) ENGINE=InnoDB;";
         Query::run($query);
     }
 
@@ -58,13 +60,14 @@ class ImageManager
         return Query::run($query);
     }
 
+
     public static function updateImage($image)
     {
         $query = "update Image set url='" . $image->getUrl() . "',extension='" . $image->getExtension() . "',taille=" . $image->getTaille() . ", dateAjout = CURRENT_TIMESTAMP()" . ",nom = '" . $image->getNom() . "',description = '" . $image->getDescription() . "' where id = " . $image->getId();
         return Query::run($query);
     }
 
-    public static function deleteImage($id)
+    public static function deleteImageById($id)
     {
         $query = "delete from image where id=" . $id;
         return Query::run($query);

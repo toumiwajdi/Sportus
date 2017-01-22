@@ -5,14 +5,12 @@
  * Date: 21/01/2017
  * Time: 18:00
  */
+include_once $_SERVER["DOCUMENT_ROOT"] . "/Sportus/config.php";
 
-include_once("Model/Managers/Query.php");
-include_once("Model/Managers/ImageManager.php");
-/*
- */
-$image = ImageManager::getImageById(3);
-$array = ImageManager::getAll();
-    foreach ($array as $t) {
-    var_dump($t);
-}
+include_once(path . "Model/Managers/Query.php");
+include_once(path . "Model/Managers/ImageManager.php");
+include_once(path . "Model/Managers/SportManager.php");
+include_once(path . "Model/Managers/PersonneManager.php");
+
+
 
